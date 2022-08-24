@@ -3,6 +3,7 @@ import { Parks } from '../Coordinates';
 import { CoordinatesService } from '../coordinates.service';
 import { WeatherNow } from '../weatherRightNow';
 import { WeatherService } from '../weather.service';
+import { Forecast } from '../forecast';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class WeatherComponent implements OnInit {
   currentForecast : WeatherNow = this.GetCurrentWeather();
   userAddress: string = "";
   longitude: number = 0;
+  forecast : Forecast = this.GetForecast();
 
   constructor(private coords : CoordinatesService, private weather: WeatherService) { }
 
@@ -28,17 +30,24 @@ export class WeatherComponent implements OnInit {
     this.coords.latitude = this.latitude;
     this.coords.longitude = this.longitude;
     this.GetCurrentWeather();
-    console.log(this.currentForecast);
+    //console.log(this.currentForecast);
+    this.GetForecast();
+    console.log(this.forecast);
     })
     return this.locationData;
   }
   GetCurrentWeather() : WeatherNow{
     this.weather.GetCurrentWeather().subscribe((response) => {
-      this.currentForecast = response;
+    this.currentForecast = response;
     })
     return this.currentForecast;
   }
-
+  GetForecast() : Forecast{
+    this.weather.GetForecast().subscribe((response) => {
+    this.forecast = response;
+    })
+    return this.forecast;
+  }
   ngOnInit(): void {
   }
 
