@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { CoordinatesService } from './coordinates.service';
 import { WeatherComponent } from './weather/weather.component';
+import { WeatherService } from './weather.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { WeatherComponent } from './weather/weather.component';
       {path: 'weather', component: WeatherComponent},
     ])
   ],
-  providers: [CoordinatesService],
+  providers: [CoordinatesService, WeatherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
