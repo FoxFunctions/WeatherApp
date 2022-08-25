@@ -13,13 +13,15 @@ import { Forecast } from '../forecast';
 })
 export class WeatherComponent implements OnInit {
   latitude: number = 0;
+  longitude: number = 0;
   locationData: Parks = this.GetGeoData();
   currentForecast : WeatherNow = this.GetCurrentWeather();
   userAddress: string = "";
-  longitude: number = 0;
   forecast : Forecast = this.GetForecast();
+  helper : boolean = true;
 
-  constructor(private coords : CoordinatesService, private weather: WeatherService) { }
+  constructor(private coords : CoordinatesService, private weather: WeatherService) {
+   }
 
   GetGeoData() : Parks{
     this.coords.userAddress = this.userAddress;
@@ -30,9 +32,8 @@ export class WeatherComponent implements OnInit {
     this.coords.latitude = this.latitude;
     this.coords.longitude = this.longitude;
     this.GetCurrentWeather();
-    //console.log(this.currentForecast);
     this.GetForecast();
-    console.log(this.forecast);
+    this.helper = false;
     })
     return this.locationData;
   }

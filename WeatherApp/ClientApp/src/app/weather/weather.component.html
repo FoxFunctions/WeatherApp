@@ -5,3 +5,10 @@
 <p>{{latitude}}</p>
 <h3>Longitude</h3>
 <p>{{longitude}}</p>
+
+<h3 *ngIf="helper"> Weather in New York, New York</h3>
+<h3 *ngIf="!helper">Weather in {{currentForecast.name}}, {{locationData.locations[0].address.state}}</h3>
+<img src="http://openweathermap.org/img/wn/{{currentForecast.weather[0].icon}}.png" alt="">
+<p>Current Temp: {{currentForecast.main.temp}} F</p>
+<p>Feels Like: {{currentForecast.main.feels_like}} F</p>
+<p>Humidity: {{currentForecast.main.humidity}}%</p>
